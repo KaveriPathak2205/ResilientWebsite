@@ -54,7 +54,41 @@ async function appendToSheet(rowData) {
   return response;
 }
 
-// ── POST /api/book-service ──
+// ── API ROUTES (must be before the catch-all) ──
+
+// Health check
+app.get('/api/test', (req, res) => {
+  res.json({
+    status: 'ok',
+    sheet_id_set: !!process.env.SHEET_ID,
+    credentials_set: !!process.env.GOOGLE_CREDENTIALS,
+  });
+});
+
+// Debug: verify sheet is accessible
+app.get('/api/debug-sheet', async (req, res) => {
+  try {
+    const sheets = getGoogleSheetsClient();
+    const result = await sheets.spreadsheets.get({
+      spreadsheetId: process.env.SHEET_ID
+    });
+    res.json({
+      found: true,
+      sheet_id_used: process.env.SHEET_ID,
+      title: result.data.properties.title,
+      tabs: result.data.sheets.map(s => s.properties.title)
+    });
+  } catch (err) {
+    res.json({
+      found: false,
+      sheet_id_used: process.env.SHEET_ID,
+      error: err.message,
+      status: err.response ? err.response.status : null
+    });
+  }
+});
+
+// POST /api/book-service
 app.post('/api/book-service', async (req, res) => {
   try {
     console.log('📥 Incoming booking body:', JSON.stringify(req.body));
@@ -93,16 +127,7 @@ app.post('/api/book-service', async (req, res) => {
   }
 });
 
-// ── GET /api/test ── quick health check
-app.get('/api/test', (req, res) => {
-  res.json({
-    status: 'ok',
-    sheet_id_set: !!process.env.SHEET_ID,
-    credentials_set: !!process.env.GOOGLE_CREDENTIALS,
-  });
-});
-
-// Catch-all: serve frontend
+// ── Catch-all: serve frontend (MUST be last) ──
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
