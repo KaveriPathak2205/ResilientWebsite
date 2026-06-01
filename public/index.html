@@ -6,23 +6,24 @@
   <title>Resilient | Industrial Automation Services</title>
   <meta name="description" content="Resilient provides industrial automation consultancy, Siemens PCS 7 services, safety systems SIL2/SIL3 support, training, Siemens S5 to S7 migration, BOQ optimization, and architecture verification." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800;900&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --gold: #f0a500;
-      --gold-dark: #c98a00;
-      --gold-light: #ffd166;
-      --bg: #0a0a0a;
-      --bg2: #111111;
-      --bg3: #181818;
-      --card: #141414;
-      --card-hover: #1c1c1c;
-      --border: #2a2a2a;
-      --text: #e8e8e8;
-      --text-muted: #888;
-      --text-dim: #555;
-      --white: #ffffff;
-    }
+  --Neon-purple: #bf00ff;
+  --Neon-pink: #ff0099;
+  --Electric-blue: #0066ff;
+  --bg: #050505;
+  --bg2: #0a0a0a;
+  --bg3: #0f0f0f;
+  --card: #0d0d0d;
+  --card-hover: #141414;
+  --border: #1a1a1a;
+  --text: #e8e8e8;
+  --text-muted: #666;
+  --text-dim: #333;
+  --white: #ffffff;
+}
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
     body {
@@ -31,12 +32,12 @@
       color: var(--text);
       overflow-x: hidden;
     }
-    h1, h2, h3, h4 { font-family: 'Syne', sans-serif; }
+    h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 
     /* ── SCROLLBAR ── */
     ::-webkit-scrollbar { width: 6px; }
     ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb { background: var(--Neon-pink); border-radius: 3px; }
 
     /* ── NAVBAR ── */
     nav {
@@ -60,7 +61,7 @@
     }
     .nav-logo-icon {
       width: 38px; height: 38px;
-      background: var(--gold);
+      background: var(--Neon-purple);
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
       font-size: 20px;
@@ -69,8 +70,7 @@
       flex-shrink: 0;
     }
     .nav-logo span {
-      font-family: 'Syne', sans-serif;
-      font-size: 1.35rem;
+      font-family: 'Playfair Display', serif;
       font-weight: 700;
       color: var(--white);
       letter-spacing: 0.02em;
@@ -88,11 +88,11 @@
     .nav-links a::after {
       content: '';
       position: absolute; bottom: -4px; left: 0; right: 0; height: 1px;
-      background: var(--gold);
+      background: var(--Neon-purple);
       transform: scaleX(0);
       transition: transform 0.25s;
     }
-    .nav-links a:hover { color: var(--gold); }
+    .nav-links a:hover { color: var(--Neon-purple); }
     .nav-links a:hover::after { transform: scaleX(1); }
     .nav-hamburger {
       display: none;
@@ -175,13 +175,13 @@
       font-size: 0.72rem;
       letter-spacing: 0.16em;
       text-transform: uppercase;
-      color: var(--gold);
+      color: var(--Neon-purple);
       margin-bottom: 28px;
       animation: heroFadeIn 1s 0.2s ease both;
     }
     .hero-badge::before {
       content: ''; width: 7px; height: 7px;
-      background: var(--gold); border-radius: 50%;
+      background: var(--Neon-purple); border-radius: 50%;
       animation: pulse-dot 2s ease-in-out infinite;
     }
     @keyframes pulse-dot {
@@ -192,16 +192,17 @@
       font-size: clamp(3.5rem, 10vw, 7.5rem);
       font-weight: 800;
       color: var(--white);
-      line-height: 1;
-      letter-spacing: -0.02em;
+      line-height: 1.05;
+      letter-spacing: 0.01em;
       margin-bottom: 20px;
       animation: heroFadeIn 1s 0.4s ease both;
     }
     .hero-tagline {
       font-size: clamp(1rem, 2.5vw, 1.35rem);
-      font-weight: 600;
-      color: var(--gold);
-      font-family: 'Syne', sans-serif;
+      font-weight: 500;
+      color: var(--Neon-purple);
+      font-family: 'DM Sans', sans-serif;
+      letter-spacing: 0.04em;
       margin-bottom: 16px;
       animation: heroFadeIn 1s 0.6s ease both;
     }
@@ -215,10 +216,10 @@
     }
     .hero-cta {
       display: inline-flex; align-items: center; gap: 10px;
-      background: var(--gold);
+      background: var(--Neon-purple);
       color: #000;
-      font-family: 'Syne', sans-serif;
-      font-weight: 700;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
       font-size: 0.85rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
@@ -230,7 +231,7 @@
       animation: heroFadeIn 1s 1s ease both;
     }
     .hero-cta:hover {
-      background: var(--gold-light);
+      background: var(--Electric-blue);
       transform: translateY(-2px);
       box-shadow: 0 12px 32px rgba(240,165,0,0.3);
     }
@@ -249,19 +250,20 @@
     .section-label {
       font-size: 0.72rem; font-weight: 600;
       letter-spacing: 0.18em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 12px;
+      color: var(--Neon-purple); margin-bottom: 12px;
     }
     .section-title {
-      font-size: clamp(2rem, 4vw, 3rem);
-      font-weight: 800; color: var(--white);
-      line-height: 1.1; margin-bottom: 20px;
+      font-size: clamp(2.2rem, 4.5vw, 3.5rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.15; margin-bottom: 20px;
+      letter-spacing: 0.01em;
     }
     .section-sub {
       font-size: 1rem; color: var(--text-muted);
       max-width: 600px; line-height: 1.7;
     }
     .section-divider {
-      width: 48px; height: 3px; background: var(--gold);
+      width: 48px; height: 3px; background: var(--Neon-purple);
       margin-bottom: 16px; border-radius: 2px;
     }
 
@@ -303,11 +305,11 @@
       border-radius: 4px;
     }
     .about-name {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1.6rem; font-weight: 800;
       color: var(--white); margin-bottom: 4px;
     }
-    .about-role { color: var(--gold); font-size: 0.95rem; font-weight: 500; margin-bottom: 20px; }
+    .about-role { color: var(--Neon-purple); font-size: 0.95rem; font-weight: 500; margin-bottom: 20px; }
     .about-bio { color: #999; line-height: 1.75; font-size: 0.95rem; margin-bottom: 32px; }
     .expertise-grid {
       display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
@@ -322,24 +324,24 @@
       transition: border-color 0.2s, background 0.2s;
     }
     .expertise-tag:hover {
-      border-color: var(--gold-dark);
+      border-color: var(--Neon-pink);
       background: var(--card-hover);
     }
     .expertise-tag-icon { font-size: 1rem; }
     .about-right { }
     .timeline-label {
       display: flex; align-items: center; gap: 12px;
-      font-family: 'Syne', sans-serif; font-weight: 700;
+      font-family: 'Playfair Display', serif; font-weight: 700;
       font-size: 1.05rem; color: var(--white);
       margin-bottom: 32px;
     }
     .timeline-label::before {
-      content: ''; display: block; width: 32px; height: 2px; background: var(--gold);
+      content: ''; display: block; width: 32px; height: 2px; background: var(--Neon-purple);
     }
     .timeline { position: relative; }
     .timeline::before {
       content: ''; position: absolute; left: 10px; top: 8px; bottom: 0; width: 1px;
-      background: linear-gradient(to bottom, var(--gold), transparent);
+      background: linear-gradient(to bottom, var(--Neon-purple), transparent);
     }
     .timeline-item {
       display: flex; gap: 24px; margin-bottom: 24px;
@@ -349,7 +351,7 @@
     .timeline-item.visible { opacity: 1; transform: none; }
     .timeline-dot {
       width: 20px; height: 20px; border-radius: 50%;
-      border: 2px solid var(--gold);
+      border: 2px solid var(--Neon-purple);
       background: var(--bg2);
       flex-shrink: 0; margin-top: 2px;
       position: relative; z-index: 1;
@@ -362,14 +364,14 @@
       padding: 20px 24px;
     }
     .timeline-years {
-      font-size: 0.78rem; color: var(--gold);
+      font-size: 0.78rem; color: var(--Neon-purple);
       font-weight: 600; margin-bottom: 6px;
     }
     .timeline-role {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 3px;
     }
-    .timeline-company { font-size: 0.85rem; color: var(--gold); margin-bottom: 8px; }
+    .timeline-company { font-size: 0.85rem; color: var(--Neon-purple); margin-bottom: 8px; }
     .timeline-desc { font-size: 0.85rem; color: var(--text-muted); line-height: 1.6; }
 
     /* ── SERVICES ── */
@@ -397,7 +399,7 @@
     .service-card::before {
       content: '';
       position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: var(--gold);
+      background: var(--Neon-purple);
       transform: scaleX(0);
       transition: transform 0.3s;
     }
@@ -424,11 +426,11 @@
       margin-bottom: 20px;
     }
     .service-name {
-      font-family: 'Syne', sans-serif;
+      font-family: 'Playfair Display', serif;
       font-size: 1rem; font-weight: 700;
       color: var(--white); margin-bottom: 12px; line-height: 1.3;
     }
-    .service-card:hover .service-name { color: var(--gold-light); }
+    .service-card:hover .service-name { color: var(--Electric-blue); }
     .service-desc {
       font-size: 0.875rem; color: var(--text-muted); line-height: 1.65;
       margin-bottom: 24px;
@@ -437,7 +439,7 @@
       display: inline-flex; align-items: center; gap: 6px;
       font-size: 0.78rem; font-weight: 600;
       letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gold);
+      color: var(--Neon-purple);
       background: none; border: none; cursor: pointer;
       padding: 0; font-family: 'DM Sans', sans-serif;
       transition: gap 0.2s;
@@ -453,7 +455,7 @@
       align-items: start;
     }
     .contact-left-name {
-      font-family: 'Syne', sans-serif; font-size: 1.5rem; font-weight: 700;
+      font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700;
       color: var(--white); margin-bottom: 4px;
     }
     .contact-left-sub { font-size: 0.9rem; color: var(--text-muted); margin-bottom: 36px; }
@@ -465,7 +467,7 @@
       transition: border-color 0.2s;
       color: var(--text);
     }
-    .contact-item:hover { border-color: var(--gold-dark); }
+    .contact-item:hover { border-color: var(--Neon-pink); }
     .contact-item-icon {
       width: 36px; height: 36px;
       background: rgba(240,165,0,0.1);
@@ -476,7 +478,7 @@
     }
     .contact-item-label {
       font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
-      color: var(--gold); margin-bottom: 2px; font-weight: 600;
+      color: var(--Neon-purple); margin-bottom: 2px; font-weight: 600;
     }
     .contact-item-value { font-size: 0.9rem; color: var(--text); }
     .inquiry-box {
@@ -484,7 +486,7 @@
       border-radius: 6px; padding: 32px 30px;
     }
     .inquiry-title {
-      font-family: 'Syne', sans-serif; font-size: 1.15rem; font-weight: 700;
+      font-family: 'Playfair Display', serif; font-size: 1.15rem; font-weight: 700;
       color: var(--white); margin-bottom: 24px;
     }
     .form-group { margin-bottom: 18px; }
@@ -500,20 +502,20 @@
       color: var(--text); font-family: 'DM Sans', sans-serif; font-size: 0.9rem;
       outline: none; transition: border-color 0.2s;
     }
-    .form-input:focus, .form-textarea:focus { border-color: var(--gold-dark); }
+    .form-input:focus, .form-textarea:focus { border-color: var(--Neon-pink); }
     .form-input::placeholder, .form-textarea::placeholder { color: var(--text-dim); }
     .form-textarea { resize: vertical; min-height: 100px; }
     .submit-btn {
       width: 100%;
       display: flex; align-items: center; justify-content: center; gap: 10px;
-      background: var(--gold); color: #000;
-      font-family: 'Syne', sans-serif; font-weight: 700;
+      background: var(--Neon-purple); color: #000;
+      font-family: 'DM Sans', sans-serif; font-weight: 600;
       font-size: 0.9rem; letter-spacing: 0.05em;
       padding: 14px 24px; border-radius: 4px;
       border: none; cursor: pointer;
       transition: background 0.2s, transform 0.2s;
     }
-    .submit-btn:hover { background: var(--gold-light); transform: translateY(-1px); }
+    .submit-btn:hover { background: var(--Electric-blue); transform: translateY(-1px); }
 
     /* ── FOOTER ── */
     footer {
@@ -531,7 +533,7 @@
       color: var(--text-muted); font-size: 0.88rem; text-decoration: none;
       transition: color 0.2s;
     }
-    .footer-links a:hover { color: var(--gold); }
+    .footer-links a:hover { color: var(--Neon-purple); }
     .footer-copy {
       text-align: center; font-size: 0.82rem; color: var(--text-dim);
       border-top: 1px solid var(--border); padding-top: 24px;
@@ -569,15 +571,15 @@
       display: flex; align-items: center; justify-content: center;
       transition: color 0.2s, border-color 0.2s;
     }
-    .modal-close:hover { color: var(--white); border-color: var(--gold-dark); }
+    .modal-close:hover { color: var(--white); border-color: var(--Neon-pink); }
     .modal-title {
-      font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 800;
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 800;
       color: var(--white); margin-bottom: 4px;
     }
     .modal-service-tag {
       display: inline-block;
       background: rgba(240,165,0,0.1); border: 1px solid rgba(240,165,0,0.3);
-      color: var(--gold); font-size: 0.78rem; font-weight: 600;
+      color: var(--Neon-purple); font-size: 0.78rem; font-weight: 600;
       padding: 4px 12px; border-radius: 20px; margin-bottom: 28px;
     }
     .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -587,7 +589,7 @@
     .modal-success.show { display: block; }
     .modal-success-icon { font-size: 3rem; margin-bottom: 16px; }
     .modal-success-title {
-      font-family: 'Syne', sans-serif; font-size: 1.3rem; font-weight: 700;
+      font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 700;
       color: var(--white); margin-bottom: 10px;
     }
     .modal-success-msg { color: var(--text-muted); font-size: 0.9rem; line-height: 1.6; }
@@ -611,10 +613,10 @@
     .mobile-menu.open { display: flex; }
     .mobile-menu a {
       color: var(--text); text-decoration: none; font-size: 1rem;
-      font-family: 'Syne', sans-serif; font-weight: 600;
+      font-family: 'DM Sans', sans-serif; font-weight: 500;
       transition: color 0.2s;
     }
-    .mobile-menu a:hover { color: var(--gold); }
+    .mobile-menu a:hover { color: var(--Neon-purple); }
 
     /* ── RESPONSIVE ── */
     @media (max-width: 1024px) {
