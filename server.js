@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const path = require('path');
 const { google } = require('googleapis');
+const nodemailer = require('nodemailer');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -124,6 +125,69 @@ app.post('/api/book-service', async (req, res) => {
       console.error('❌ Google API error data:', JSON.stringify(err.response.data));
     }
     res.status(500).json({ success: false, error: err.message });
+  }
+});
+
+// POST /api/contact  — sends an email to Utpal
+app.post('/api/contact', async (req, res) => {
+  try {
+    const { name, email, message } = req.body;
+
+    if (!name || !email || !message) {
+      return res.status(400).json({ success: false, error: 'Please fill in all fields.' });
+    }
+
+    // ── Configure your SMTP sender here ──
+    // Set these two env variables on your server:
+    //   SMTP_USER  — the Gmail address you want to send FROM (e.g. yourname@gmail.com)
+    //   SMTP_PASS  — the Gmail App Password (16-char, no spaces) for that account
+    const transporter = nodemailer.createTransport({
+      service: 'gmail',
+      auth: {
+        user: process.env.SMTP_USER,
+        pass: process.env.SMTP_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: `"Resilient Website" <${process.env.SMTP_USER}>`,
+      to: 'utpal.pathak@zohomail.com',
+      replyTo: email,
+      subject: `New Contact Message from ${name}`,
+      text: `Hello Utpal,\n\nYou have received a new message via the Resilient website contact form.\n\nFrom: ${name}\nEmail: ${email}\n\nMessage:\n${message}\n\n---\nYou can reply directly to this email to respond to ${name}.`,
+      html: `
+        <div style="font-family:Arial,sans-serif;max-width:600px;margin:0 auto;border:1px solid #e0d4c0;border-radius:10px;overflow:hidden;">
+          <div style="background:#b36b2c;padding:24px 28px;">
+            <h2 style="color:#fff;margin:0;font-size:1.3rem;">New Contact Message — Resilient Website</h2>
+          </div>
+          <div style="padding:28px;background:#fffdf8;">
+            <p style="margin:0 0 18px;color:#3a2e1e;font-size:1rem;">Hello Utpal,</p>
+            <p style="margin:0 0 24px;color:#3a2e1e;">You have received a new message via the Resilient website contact form.</p>
+            <table style="width:100%;border-collapse:collapse;margin-bottom:24px;">
+              <tr>
+                <td style="padding:10px 14px;background:#f5ede0;border-radius:6px 6px 0 0;font-weight:bold;color:#7a4a1e;width:100px;">From</td>
+                <td style="padding:10px 14px;background:#f5ede0;border-radius:6px 6px 0 0;color:#2f261b;">${name}</td>
+              </tr>
+              <tr>
+                <td style="padding:10px 14px;background:#fdf6ee;font-weight:bold;color:#7a4a1e;">Email</td>
+                <td style="padding:10px 14px;background:#fdf6ee;color:#2f261b;"><a href="mailto:${email}" style="color:#b36b2c;">${email}</a></td>
+              </tr>
+            </table>
+            <div style="background:#f5ede0;border-left:4px solid #b36b2c;padding:16px 18px;border-radius:0 6px 6px 0;margin-bottom:24px;">
+              <p style="margin:0 0 8px;font-weight:bold;color:#7a4a1e;">Message:</p>
+              <p style="margin:0;color:#2f261b;white-space:pre-wrap;">${message.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</p>
+            </div>
+            <p style="margin:0;color:#888;font-size:0.85rem;">You can reply directly to this email to respond to ${name}.</p>
+          </div>
+        </div>
+      `,
+    });
+
+    console.log(`✅ Contact email sent from ${name} (${email})`);
+    res.json({ success: true });
+  } catch (err) {
+    console.error('❌ Contact email error:', err.message);
+    res.status(500).json({ success: false, error: 'Failed to send message. Please try again.' });
   }
 });
 
