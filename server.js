@@ -137,12 +137,14 @@ app.post('/api/contact', async (req, res) => {
       return res.status(400).json({ success: false, error: 'Please fill in all fields.' });
     }
 
-    // ── Configure your SMTP sender here ──
-    // Set these two env variables on your server:
-    //   SMTP_USER  — the Gmail address you want to send FROM (e.g. yourname@gmail.com)
-    //   SMTP_PASS  — the Gmail App Password (16-char, no spaces) for that account
+    // ── Namecheap Private Email SMTP ──
+    // Set these two env variables on Railway:
+    //   SMTP_USER  — info@resilient-enterprise.com
+    //   SMTP_PASS  — mailbox password for that address
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      host: 'mail.privateemail.com',
+      port: 465,
+      secure: true, // SSL
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
