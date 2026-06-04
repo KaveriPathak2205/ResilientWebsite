@@ -143,8 +143,8 @@ app.post('/api/contact', async (req, res) => {
     //   SMTP_PASS  — mailbox password for that address
     const transporter = nodemailer.createTransport({
       host: 'mail.privateemail.com',
-      port: 465,
-      secure: true, // SSL
+      port: 587,
+      secure: false, // TLS on port 587
       auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASS,
@@ -188,8 +188,11 @@ app.post('/api/contact', async (req, res) => {
     console.log(`✅ Contact email sent from ${name} (${email})`);
     res.json({ success: true });
   } catch (err) {
-    console.error('❌ Contact email error:', err.message);
-    res.status(500).json({ success: false, error: 'Failed to send message. Please try again.' });
+    console.error("❌ Contact email error:", err.message);
+    console.error("❌ Full error code:", err.code);
+    console.error("❌ SMTP_USER set:", !!process.env.SMTP_USER, "| value:", process.env.SMTP_USER);
+    console.error("❌ SMTP_PASS set:", !!process.env.SMTP_PASS);
+    res.status(500).json({ success: false, error: err.message });
   }
 });
 
